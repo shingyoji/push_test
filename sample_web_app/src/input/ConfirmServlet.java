@@ -35,18 +35,27 @@ public class ConfirmServlet extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		request.setCharacterEncoding("UTF-8");
-		// request.jspから送られてきたテキストを受け取りtextという変数に入れる
+		// 入力値取得
 		String text = request.getParameter("inputName");
+
+		//入力チェック
+		boolean errFlg = false;
 		if(StringUtils.isEmpty(text)) {
 			request.setAttribute("errMsg", "氏名を入力してください");
-
+			errFlg = true;
+		}
+		if(text.length()>20) {
+			request.setAttribute("errMsg", "氏名は20文字以内で入力してください");
+			errFlg = true;
+		}
+		//エラーの場合画面再表示
+		if(errFlg) {
 			// confirm.jspを表示する
 			request.getRequestDispatcher("index.jsp").forward(request, response);
 		}
 
-		// response.jspで文字列を取得するための準備
+		// レスポンス情報セット
 		request.setAttribute("confirmName", text);
-
 		// confirm.jspを表示する
 		request.getRequestDispatcher("confirm.jsp").forward(request, response);
 	}
