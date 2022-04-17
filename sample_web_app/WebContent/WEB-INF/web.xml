@@ -19,4 +19,14 @@
     <servlet-name>ConfirmServlet</servlet-name>
     <url-pattern>/confirm</url-pattern>
   </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>CompleteServlet</display-name>
+    <servlet-name>CompleteServlet</servlet-name>
+    <servlet-class>input.CompleteServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>CompleteServlet</servlet-name>
+    <url-pattern>/complete</url-pattern>
+  </servlet-mapping>
 </web-app>
